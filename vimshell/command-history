@@ -1,0 +1,44 @@
+python strenum.py
+ls
+cd ../util
+gnome-open object.png
+uml object.puml
+cd ..
+cd home/
+plantuml object.puml
+cd python/
+cd command/
+lcd ..
+gradle -q clean
+gradle -q --stacktrace tasks
+gradle -q tasks
+vim /home/black-ubuntu/gradle/32mcount
+gradle -q release
+gradle tasks
+gradle -q distribution
+gradle -q
+gradle -q printTaskProperties
+gradle -q hello
+gradle -q helloPlanet
+gradle -q task0
+gradle -q task3
+gradle -q task4
+gradle -q aaa
+gradle -q task2
+gradle -q task1
+gradle task1
+gradle -q taskX
+gradle -q intro
+gradle -q count
+gradle -q build
+gradle -q upper
+vim /home/black-ubuntu/gradle/gradle\\ -q\\ count
+gradle build
+vim /home/black-ubuntu/gradle/gradle\\ -q\\ hello
+gradle hello
+:q
+cd
+cd ~/.vim/
+cd ~/.vim/vim
+cd gradle
+iexe python

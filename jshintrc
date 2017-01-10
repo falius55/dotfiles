@@ -1,0 +1,13 @@
+{
+        "globalstrict"    : true,
+        "indent"    : 4,
+        "unused"    : "vars",
+        "eqeqeq"    : true,
+        "undef"     : true,
+        "browser"  : true,
+        "jquery"    : true,
+        "devel"     : true,
+        "esversion" : 6,
+        "quotmark"  : true,
+        "trailing"  : true
+    }

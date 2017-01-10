@@ -1,0 +1,63 @@
+snippet     servlet
+abbr        serv
+   import javax.servlet.*;
+   import javax.servlet.http.*;
+   import java.net.*;
+
+   public class ${1:Name} extends HttpServlet  {
+
+      public void init() {
+
+      }
+
+      public void destroy(){
+
+      }
+
+      public void ${2:doPost}(HttpServletRequest request, HttpServletResponse response)
+           throws IOException, ServletException {
+
+         response.setContentType("application/json; charset=UTF-8");
+         try {
+            PrintWriter out = response.getWriter();
+
+            ${0:TARGET}
+
+            out.close();
+         } catch(IOException e) {
+               log(e.getMassage());
+         }
+
+      }
+
+   }
+
+snippet     mysql
+abbr        sql
+      // import java.sql.* を追記すること
+
+      Connection conn = null;
+      PreparedStatement pstmt;
+		String url = "jdbc:mysql://localhost/${1:#:databaseName}";
+		String user = "${2:#:username}";
+		String password = "${3:#:password}";
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			conn = DriverManager.getConnection(url,user,password);
+
+			sql = "${4:#:select * from table_name where id = ?}";
+			pstmt = conn.prepareStatement(sql);
+         ${0:TARGET}
+
+		} catch(ClassNotFoundException e) {
+			log(e.getMessage());
+		} catch(SQLException e) {
+			log(e.getMessage());
+		} catch(Exception e) {
+			log(e.getMessage());
+		} 
+snippet class
+    public class ${1} {
+        ${0:TARGET}
+    }

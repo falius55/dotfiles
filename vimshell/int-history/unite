@@ -1,0 +1,8 @@
+ls
+gradle -q hello
+cd ~/.vim/
+cd ~/.vim/vim
+:q
+cd gradle
+cd ..
+iexe python

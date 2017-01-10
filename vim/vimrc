@@ -1,0 +1,88 @@
+"vimのファイルタイプ識別をオンにする
+filetype plugin indent on
+"行番号を表示
+set number
+"マウスモード有効
+set mouse=a
+"タブの長さ
+set tabstop=4
+"自動インデントでずれる幅
+set shiftwidth=4
+"改行時に前の行のインデントを継続する
+set autoindent
+"改行時に入力された行の末尾に合わせて次の行のインデントを継続する
+set smartindent
+"画面最下部のステータス画面の設定
+set laststatus=2
+set statusline=%F%m%r%h%w\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" OSのクリップボードを使う
+" set clipboard+=unnamed
+set clipboard=unnamed
+" 対応括弧の表示秒数を3秒にする
+set matchtime=3
+" 不可視文字を表示
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲
+" 対応括弧に<と>のペアを追加
+set matchpairs& matchpairs+=<:>
+" 文字がない場所にもカーソルを移動できるようにする
+"set virtualedit=all
+" 小文字の検索でも大文字も見つかるようにする
+set ignorecase
+" ただし大文字も含めた検索の場合はその通りに検索する
+set smartcase
+" インクリメンタルサーチを行う
+set incsearch
+" コマンド、検索パターンを10000個まで履歴に残す
+set history=10000
+
+" 折りたたみの位置を示す+や-などのマークが表示される列を設置する
+set foldcolumn=4
+" インデントで折りたたむ
+" set foldmethod=indent
+set foldmethod=manual  " 手動
+
+" vimgrepで自動的にquickfix-windowを開く
+autocmd QuickFixCmdPost *grep* cwindow
+
+" OutSource
+" neobundle
+source ~/.vim/neobundle.vim
+" snippet
+source ~/.vim/snippet.vim
+"keymap
+source ~/.vim/mapping.vim
+source ~/.vim/syntax/common.vim
+
+" カーソルがある行を強調表示する
+set cursorline
+
+" タブをスペースに変換する
+set expandtab
+
+" 不可視文字を表示する
+set listchars=tab:>-,trail:.
+
+" vimfiler
+let g:vimfiler_as_default_explorer = 1
+
+" javascriptのファイル保存時に自動でチェックを行う(syntastic)
+let g:syntastic_mode_map = {
+            \ "mode" : "active",
+            \"active_filetypes" : ["javascript", "json"],
+            \}
+
+" ファイルタイプの設定
+augroup SetFileType
+    autocmd!
+    autocmd BufRead,BufNewFile *.java setfiletype java
+    autocmd BufRead,BufNewFile *.html setfiletype html
+    autocmd BufRead,BufNewFile *.python setfiletype python
+    autocmd BufRead,BufNewFile *.groovy setfiletype grooby
+    autocmd BufRead,BufNewFile *.c,*.cc,*.cpp setfiletype cpp
+    autocmd BufRead,BufNewFile *.jsp setfiletype jsp
+    autocmd BufRead,BufNewFile *.xml setfiletype xml
+    autocmd BufRead,BufNewFile *.rb setfiletype ruby
+    autocmd BufRead,BufNewFile *.js setfiletype javascript
+    autocmd BufRead,BufNewFile *.vim,vimrc,vimperatorrc setfiletype vim
+    autocmd BufRead,BufNewFile *.puml setfiletype plantuml
+augroup END

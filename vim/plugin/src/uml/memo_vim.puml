@@ -1,0 +1,148 @@
+@startuml memo_vim.png
+
+class Operator {
+    _vim : Vim
+    _bufferManager : BufferManager
+    _state : StateManager
+    _opener : Opener
+    open()
+    movedCursor()
+    writeFile()
+    updateMemoPosition()
+    deleteMemo()
+    moveMemo()
+    toggleSummaryOrContent()
+    initBuffer()
+    }
+
+Operator *--> Vim
+Operator *--> BufferManager
+Operator *--> StateManager
+Operator *--> Opener
+Operator --> DiffParser : updateMemoPosition()
+
+class Opener {
+    _vim : Vim
+    _bufferManager : BufferManager
+    _state : StateManager
+    auto()
+    openContent()
+    openSummary()
+    close()
+    _openWindow()
+    }
+
+Opener *-- Vim
+Opener *-- BufferManager
+Opener *-- StateManager
+
+class StateManager {
+    _bufferManager : BufferManager
+    _isSummary
+    currentTargetLineNumber()
+    hasMemoOfCurrentLine()
+    isMemoOpened()
+    isContentMemoOpened()
+    isSummaryMemoOpened()
+    isInTargetBuffer()
+    isInMemoBuffer()
+    isSummary()
+    toggleSummaryOrContent()
+    isAlltimeMemoWindow()
+    isRequiredMemoWindow()
+    }
+
+StateManager *--> BufferManager
+
+class BufferManager {
+    _vim : Vim
+    getCurrentBuffer()
+    getTopMemoBuffer()
+    getCurrentTargetBuffer()
+    equals()
+    }
+
+BufferManager *--> Vim
+
+class function {
+    operator : Operator
+    }
+
+function *--> Operator
+
+class Vim {
+    _buffers : Buffer[]
+    _windows : Window[]
+    _tabs : Tab[]
+    getGlobalVar()
+    getVimVar()
+    bufferFromIndex()
+    bufferFromNumber()
+    window(int index)
+    getCurrentWindow()
+    find(elem)
+    findByTag()
+    findBufferByName()
+    remove()
+    appendBuffer()
+    appendWindow()
+    }
+
+Vim *-- Buffer
+Vim *-- Window
+Vim *-- Tab
+
+class Buffer {
+    _vim :  Vim
+    _memo : Memo
+    findWindow() : Window
+    finish()
+    }
+
+Buffer *--> Vim
+Buffer *--> Memo
+
+class Window {
+    _vim : Vim
+    move()
+    builder() : WindowBuilder
+    }
+
+Window --> WindowBuilder
+
+class WindowBuilder {
+    _vim : Vim
+    build() : Window
+    }
+
+Opener --> WindowBuilder
+
+class Tab {
+    _vim : Vim
+    findWindows : Window[]
+    }
+
+class Memo {
+    _saveFilePath : str
+    _targetBuffer : Buffer
+    _memoBuffer : Buffer | None
+    keepOut()
+    load()
+    loadSummary()
+    saveFile()
+    deleteFile()
+    moveMemo()
+    }
+
+class DiffParser {
+    start()
+    }
+
+note "load()とloadSummary()で各バッファの設定を行っている" as N1
+N1 ... Memo
+note "_openWindow()内でバッファの共通設定を行っている" as N2
+N2 ... Opener
+note "Window操作はmovedCursor()からスタート" as N3
+N3 ... Operator
+
+@enduml

@@ -1,0 +1,22 @@
+@startuml object.png
+
+class Buffer {
+    }
+
+class Window {
+    }
+
+class Tab {
+    }
+
+class Vim {
+    }
+
+
+Vim "0..1" o-- "1..*" Buffer
+Vim "0..1" o-- "1..*" Window
+Vim "0..1" o-- "1..*" Tab
+
+Tab "0..1" o-- "1..*" Window
+Window "0..1" o-- "1" Buffer
+@enduml

@@ -137,63 +137,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 			\ "\<Plug>(neosnippet_expand_or_jump)"
 			\: "\<TAB>"
 
-" " 一度確定した候補を取り消す
-" inoremap <expr><C-g>     neocomplcache#undo_completion()
-" " 各候補の共通する部分文字列を継ぎ足す
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
-"
-" " Recommended key-mappings.
-" " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-" 	return neocomplcache#smart_close_popup() . "\<CR>"
-" endfunction
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplcache#close_popup()
-" inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-
-"ファイルの拡張子によってmappingを変える
-" autocmd!
-" autocmd BufRead,BufNewFile *.html,*.js call s:setMap('html')
-" autocmd BufRead,BufNewFile *.java call s:setMap('java')
-" autocmd BufRead,BufNewFile *.vim,vimrc,.vimperatorrc call s:setMap('vim')
-" autocmd BufRead,BufNewFile *.xml call s:setMap('xml')
-" autocmd BufRead,BufNewFile *.jsp call s:setMap('jsp')
-" autocmd BufRead,BufNewFile *.py call s:setMap('python')
-" function! s:setMap(ft)
-" 	" 引数であることを表すには、変数の前にa:をつける
-" 	if(a:ft=='html')
-" 		call s:htmlmap()
-" 	elseif(a:ft=='java')
-" 		call s:javamap()
-" 	elseif a:ft=='vim'
-" 		call s:vimmap()
-" 	elseif a:ft=='xml'
-" 		call s:xmlmap()
-" 	elseif a:ft=='jsp'
-" 		call s:jspmap()
-" 	elseif a:ft=='python'
-" 		call s:pythonmap()
-" 	endif
-" endfunction
-" <buffer>をつけることでバッファローカルmapにする
-" もしつけなければ最後に開いたファイルのmapがすべてのファイルに適用される
-"vimスクリプトのマップ
-" function! s:xmlmap()
-" 	"xmlのマップ
-" 	inoremap <buffer> < <><Left>
-" endfunction
-" function! s:jspmap() abort
-" 	inoremap <buffer> < <><Left>
-" 	inoremap <buffer> % %%<Left>
-" 	inoremap <buffer> ,p %%<Left>
-" endfunction
-
 source  $HOME/.vim/unite.vim
 " source $HOME/.vim/vimfiler.vim
 source $HOME/.vim/ftplugin/memovim.vim
@@ -201,4 +144,3 @@ source $HOME/.vim/ftplugin/memovim.vim
 nmap <C-i> <Plug>(next_memo)
 nmap <C-o> <Plug>(prev_memo)
 nmap ,o <Plug>(open_memo)
-" nmap <C-m> <Plug>(toggle_summary_or_content)

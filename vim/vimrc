@@ -39,7 +39,7 @@ set history=10000
 set foldcolumn=4
 " インデントで折りたたむ
 " set foldmethod=indent
-set foldmethod=manual  " 手動
+set foldmethod=marker
 
 " vimgrepで自動的にquickfix-windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
@@ -66,17 +66,27 @@ set listchars=tab:>-,trail:.
 let g:vimfiler_as_default_explorer = 1
 
 " javascriptのファイル保存時に自動でチェックを行う(syntastic)
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_quite_warnings=0
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_php_checkers=['php', 'phpcs']
 let g:syntastic_mode_map = {
             \ "mode" : "active",
-            \"active_filetypes" : ["javascript", "json"],
+            \"active_filetypes" : ["javascript", "json", "php"],
+            \"passive_filetypes" : ["java"]
             \}
+
+" syntasticでc++11を有効にする
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libc++'
 
 " ファイルタイプの設定
 augroup SetFileType
     autocmd!
     autocmd BufRead,BufNewFile *.java setfiletype java
     autocmd BufRead,BufNewFile *.html setfiletype html
-    autocmd BufRead,BufNewFile *.python setfiletype python
+    autocmd BufRead,BufNewFile *.py setfiletype python
     autocmd BufRead,BufNewFile *.groovy setfiletype grooby
     autocmd BufRead,BufNewFile *.c,*.cc,*.cpp setfiletype cpp
     autocmd BufRead,BufNewFile *.jsp setfiletype jsp

@@ -106,21 +106,30 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# core dump file
+ulimit -c unlimited
+
 ##############  new environmental values ####################
 export TERM=xterm-256color # 使用できる色の種類を増やす
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0
-export PATH=$JAVA_HOME:$PATH
-export PATH=$HOME/python:$PATH
-export CLASSPATH=$HOME/java
-export CLASSPATH=$HOME/java/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar:$CLASSPATH
-export CATALINA_HOME=$HOME/apache-tomcat-9.0.0.M10
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
+export PATH=$JAVA_HOME:$PATH
 export PATH=/usr/lib/i386-linux-gnu/qt5/bin:$PATH
-export PATH=$HOME/Downloads/MySQL-python-1.2.3/MySQLdb:$PATH
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0
+export CLASSPATH=$HOME/java
+export PATH=$HOME/python:$PATH
+export CLASSPATH=$HOME/java/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar:$CLASSPATH
 export CLASSPATH=$HOME/Downloads/junit4/hamcrest-core-1.3.jar:$CLASSPATH
 export CLASSPATH=$HOME/Downloads/junit4/junit-4.12.jar:$CLASSPATH
 # export _JAVA_OPTIONS="-Dfile.encoding=UTF-8":$_JAVA_OPTIONS
 export CLASSPATH=/usr/share/groovy/embeddable/groovy-all-1.8.6.jar:$CLASSPATH
 export CLASSPATH=$HOME/groovy:$CLASSPATH
+export CATALINA_HOME=$HOME/apache-tomcat-9.0.0.M10
+export CLASSPATH=$CATALINA_HOME/lib/servlet-api.jar:$CLASSPATH
+export CLASSPATH=$HOME/web/tategaki-editor/WEB-INF/classes:$CLASSPATH
+export CLASSPATH=$HOME/web/tategaki-editor/src:$CLASSPATH
+export PATH=$HOME/Downloads/MySQL-python-1.2.3/MySQLdb:$PATH
+export PYTHONPATH=$HOME/python:$PYTHONPATH
+export PYTHONPATH=$HOME/python/web/mysite:$PYTHONPATH
+# export GRADLE_OPTS="-Dorg.gradle.daemon=true"

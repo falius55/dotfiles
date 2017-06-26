@@ -18,8 +18,10 @@ colorscheme molokai
 syn match IdeographicSpace /　/
 hi link IdeographicSpace SyntasticStypeError
 
+" 通常文字色
+highlight Normal ctermbg=none ctermfg=white
 " javascriptなどで丸括弧が赤くハイライトされるが、見づらいので白くする
-syn match bracket "\((\|)\)"
+syn match bracket "\((\|)\|=\|+\|-\)"
 hi link bracket Normal
 
 " 画面を縦に分割した時の境界線の色
@@ -27,8 +29,6 @@ hi VertSplit ctermfg=213
 " <>()など
 hi Delimiter ctermfg=darkgreen
 " hi Operator ctermfg=white
-" 通常文字色
-highlight Normal ctermbg=none ctermfg=white
 " コメントの色
 hi comment ctermfg=lightyellow
 hi DocComment term=none cterm=none ctermfg=lightgreen ctermbg=none

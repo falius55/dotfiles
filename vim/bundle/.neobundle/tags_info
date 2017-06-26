@@ -16,11 +16,14 @@ vim-colorschemes
 vim-css3-syntax
 vim-fugitive
 vim-html5validator
+vim-indent-guides
 vim-javascript-syntax
+vim-misc
 vim-operator-replace
 vim-operator-surround
 vim-operator-user
 vim-python-pep8-indent
+vim-session
 vim-textobj-user
 vim-trailing-whitespace
 vimfiler

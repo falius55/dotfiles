@@ -8,6 +8,12 @@
         "jquery"    : true,
         "devel"     : true,
         "esversion" : 6,
-        "quotmark"  : true,
-        "trailing"  : true
+        "quotmark"  : "single",
+        "trailing"  : true,
+        "newcap" : true,
+        "curly" : true,
+        "immed" : true,
+        "maxdepth" : 3,
+        "maxlen" : 100,
+        "maxparams" : 4
     }

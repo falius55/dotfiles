@@ -1,0 +1,5 @@
+*.swp
+/bundle/
+/doc/
+/view/
+/plugin/

@@ -15,7 +15,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Add or remove your Bundles here:
 NeoBundle 'Shougo/neosnippet.vim' " コード補完機能
 NeoBundle 'Shougo/neosnippet-snippets' "スニペット集
 NeoBundle 'tpope/vim-fugitive'
@@ -23,14 +22,19 @@ NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 " NeoBundle 'Shougo/neocomplcache' "補完候補を順次表示する(スニペットも))
 NeoBundle 'Shougo/neocomplete.vim'  " neocomplcacheの現在版
+NeoBundle 'xolox/vim-session', {
+            \ 'depends' : 'xolox/vim-misc'
+            \ }  " vimのセッションを保存
 
 NeoBundle 'vim-scripts/javacomplete'
+
 NeoBundle 'Shougo/unite.vim'  " ファイル一覧を表示し、そこからファイルを開く
 NeoBundle 'Shougo/unite-outline'  " クラスや関数名の一覧を表示するunite source
 NeoBundle 'Shougo/neomru.vim'  " 最近開いたファイルをuniteで開くのに利用
 NeoBundle 'Shougo/vimfiler'  " ファイラー
 NeoBundle 'tyru/caw.vim.git' " コメントアウトしやすくする
 NeoBundle 'Shougo/vimproc'
+NeoBundle 'nathanaelkane/vim-indent-guides'  " 同じ量のインデントを縦のラインでハイライト表示する
 
 " NeoBundle 'itchyny/lightline.vim' " ステータスラインのカスタマイズプラグイン
 NeoBundle 'bronson/vim-trailing-whitespace' " 行末のスペースに色を付ける
@@ -124,3 +128,21 @@ catch
 endtry
 
 "------------------------------------------------------------
+"" vim-session Setting
+" 現在のディレクトリ直下の .vimsessions/ を取得
+let s:local_session_directory = xolox#misc#path#merge(getcwd(), '.vimsessions')
+" 存在すれば
+if isdirectory(s:local_session_directory)
+    " session保存ディレクトリをそのディレクトリの設定
+    let g:session_directory = s:local_session_directory
+    " vimを辞める時に自動保存
+    let g:session_autosave = 'yes'
+    " 引数なしでvimを起動した時にsession保存ディレクトリのdefault.vimを開く
+    let g:session_autoload = 'yes'
+    " 1分間に1回自動保存
+    let g:session_autosave_periodic = 1
+else
+    let g:session_autosave = 'no'
+    let g:session_autoload = 'no'
+endif
+unlet s:local_session_directory
